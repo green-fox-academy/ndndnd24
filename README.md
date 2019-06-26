@@ -1,2 +1,2 @@
 # ndndnd24
-link to my other reps: https://github.com/ndndnd24/greenfox
+(https://github.com/ndndnd24/greenfox "My other reps")
