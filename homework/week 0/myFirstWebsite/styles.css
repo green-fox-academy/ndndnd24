@@ -1,0 +1,56 @@
+nav {
+    background-color: #333333;
+    padding: 15px 10% 15px 10%;
+    text-align: end;
+    word-spacing: 15px;
+}
+.link {
+    font-family: 'PT Sans Narrow', sans-serif;
+    color: #ff0099;
+    text-transform: uppercase;
+    text-align: right;
+}
+a {
+    font-family: Courier;
+}
+p {
+    font-family: Consolas;
+    line-height: 30px;
+}
+.name {
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 50px;
+}
+.denomination {
+    font-family: 'PT Sans Narrow', sans-serif;
+    color: #ff0099;
+}
+.separator {
+    font-family: 'PT Sans Narrow', sans-serif;
+    text-align: center;
+    word-spacing: 30px;
+}
+.def {
+    font-family: 'PT Sans Narrow', sans-serif;
+    text-align: center;
+}
+.titles {
+    font-family: 'PT Sans Narrow', sans-serif;
+}
+body {
+    background-image: url("./assets/background.png");
+}
+#intro {
+    padding: 150px 10% 0px 10%;
+}
+#definitions {
+    padding: 0px 10% 150px 10%;
+}
+body {
+    margin: 0 auto;
+    text-align: justify;
+}
+img {
+    vertical-align: middle;
+    height: 25px;
+}

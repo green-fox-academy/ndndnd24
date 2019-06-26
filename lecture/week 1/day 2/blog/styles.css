@@ -1,0 +1,62 @@
+nav {
+    position: fixed;
+    background: grey;
+    padding: 0 15%;
+    border: 1px solid white;
+    margin: 0;
+    width: 100%;
+    top: 0;
+}
+
+h1 {
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 10px;
+    padding: 0 15%;
+}
+
+h3 {
+    font-size: 30px;
+}
+body {
+    background-image: url("./assets/cool-background.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    color: black;
+    margin: 75px auto auto auto;
+    padding: 0;
+}
+
+.new {
+    padding: 0 15%;
+}
+.old {
+    padding: 0 15%;
+}
+
+.titlebar {
+    width: 300px;
+    border-radius: 5px;
+}
+
+.postbar {
+    width: 500px;
+    border-radius: 5px;
+}
+
+.submitbutton {
+    border-radius: 5px;
+}
+
+.oldPost {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 1%;
+}
+
+.input {
+    font-weight: bold;
+}
