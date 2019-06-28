@@ -1,3 +1,5 @@
+'use strict';
+
 let welcome: string ='Yo Mentor!';
 console.log(welcome);
 

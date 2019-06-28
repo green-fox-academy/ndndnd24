@@ -1,3 +1,5 @@
+'use strict';
+
 let a: number = 2;
 a = a + 24;
 console.log(a);

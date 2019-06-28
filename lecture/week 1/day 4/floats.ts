@@ -1,3 +1,5 @@
+'use strict';
+
 console.log(2.71828);
 console.log(-3.1415);
 console.log(0.000);

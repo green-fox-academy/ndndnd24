@@ -1,3 +1,5 @@
+'use strict';
+
 console.log('Németh Dávid');
 console.log(28);
 console.log(1.78);

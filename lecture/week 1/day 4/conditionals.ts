@@ -1,3 +1,5 @@
+'use strict';
+
 let a: number = 13;
 
 if (a === 13) {
