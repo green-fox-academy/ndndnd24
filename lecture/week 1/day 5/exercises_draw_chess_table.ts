@@ -24,3 +24,6 @@ for (i; (i <= chessSize / 2); i++) {
     }
     console.log(odd);
 }
+if (chessSize%2 !== 0) {
+    console.log(even);
+}
