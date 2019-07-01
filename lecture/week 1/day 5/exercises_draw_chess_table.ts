@@ -1,6 +1,6 @@
 'use strict';
 
-let chessSize: number = 8;
+let chessSize: number = 5;
 let even: string ='';
 let odd: string = '';
 let i: number = 1;

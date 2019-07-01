@@ -1,6 +1,6 @@
 'use strict';
 
-let lineCount: number = 11;
+let lineCount: number = 9;
 let spaceCount: number = Math.floor(lineCount / 2);
 let lineTurn: number = spaceCount + 1;
 let empty: string = ' ';

@@ -1,6 +1,6 @@
 'use strict';
 
-let lineCount: number = 6;
+let lineCount: number = 11;
 let percent: string = '%';
 let empty: string = '';
 let before: string = '';
