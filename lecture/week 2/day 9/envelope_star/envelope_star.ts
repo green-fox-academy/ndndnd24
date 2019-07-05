@@ -10,6 +10,11 @@ canvas.height = canvas.scrollHeight;
 
 function drawTheLines(numberOfLines: number, lineColor: any) {
     ctx.strokeStyle = lineColor;
+    ctx.beginPath();
+    ctx.moveTo(canvas.width / 2, canvas.height / numberOfLines);
+    ctx.lineTo(canvas.width / 2, canvas.height - (canvas.height / numberOfLines));
+    ctx.stroke();
+    ctx.closePath();
     for (let i: number = 1; i < numberOfLines; i++) {
         ctx.beginPath();
         ctx.moveTo(canvas.width / 2, canvas.height / numberOfLines * i / 2);
@@ -40,4 +45,4 @@ function drawTheLines(numberOfLines: number, lineColor: any) {
     ctx.closePath();
 }
 
-drawTheLines(14, 'green');
+drawTheLines(22, '#ff00ff');

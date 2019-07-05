@@ -26,4 +26,4 @@ function drawTheLines(numberOfLines: number, topColor: any, bottomColor: any) {
     }
 }
 
-drawTheLines(25, 'purple', 'green');
+drawTheLines(21, '#f08080', '#b6fcd5');

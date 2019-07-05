@@ -35,4 +35,4 @@ function drawTriangle(size: number, quantity: number) {
 
 }
 
-drawTriangle(20, 20);
+drawTriangle(30, 15);

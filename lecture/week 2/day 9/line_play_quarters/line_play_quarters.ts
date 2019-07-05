@@ -33,4 +33,4 @@ function drawTheLines(numberOfQuarters: number, numberOfLines: number, topColor:
     }
 }
 
-drawTheLines(4, 25, 'purple', 'green');
+drawTheLines(4, 20, 'purple', 'green');

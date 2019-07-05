@@ -137,7 +137,7 @@ function drawPattern(size: number, hexagonCircles: number) {
 
 //drawPattern(25, 2);
 //drawPattern(25, 3);
-drawPattern(24, 5);
+drawPattern(25, 5);
 
 
 
