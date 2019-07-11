@@ -1,4 +1,4 @@
-import Pokemon from './pokemon'
+import { Pokemon } from './pokemon'
 
 let pokemonOfAsh: Pokemon[] = initializePokemon();
 
@@ -12,11 +12,15 @@ let wildPokemon: Pokemon = new Pokemon('Oddish', 'leaf', 'water');
 
 // Which pokemon should Ash use?
 
-for (let i: number = 0; i < 5; i++) {
-    if (wildPokemon.type === pokemonOfAsh[i].effectiveAgainst) {
+for (let i: number = 0; i < pokemonOfAsh.length; i++) {
+    if (pokemonOfAsh[i].isEffectiveAgainst(wildPokemon) == true) {
         console.log('I choose you, ' + pokemonOfAsh[i].name + '!');
     }
 }
+
+// console.log(pokemonOfAsh[3].isEffectiveAgainst(wildPokemon));
+
+// console.log('I choose you, ');
 
 function initializePokemon(): Pokemon[] {
     return [
