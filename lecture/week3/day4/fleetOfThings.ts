@@ -27,18 +27,16 @@ import { Fleet } from './fleet';
 
 class fleetOfThings {
     fleet: Fleet = new Fleet();
-    newCDOne: Thing = new Thing('Get milk');
-    newCDTwo: Thing = new Thing('Remove the obstacles');
-    newCDThree: Thing = new Thing('Stand up');
-    newCDFour: Thing = new Thing('Eat lunch');
     main() {
-        this.fleet.add(this.newCDOne);
-        this.fleet.add(this.newCDTwo);
-        this.fleet.add(this.newCDThree);
-        this.fleet.add(this.newCDFour);
+        this.fleet.add(new Thing('Get milk'));
+        this.fleet.add(new Thing('Remove the obstacles'));
+        this.fleet.add(new Thing('Stand up'));
+        this.fleet.add(new Thing('Eat lunch'));
+        this.fleet.getThings()[2].complete();
+        this.fleet.getThings()[3].complete();
     }
     print() {
-        console.log(this.fleet.getThings());
+        this.fleet.getThings().forEach(function (afonya) { console.log(afonya.letItBe()) });
     }
 }
 
