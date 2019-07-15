@@ -25,19 +25,19 @@ import { Fleet } from './fleet';
 
 // Hint: You have to create a `print()` method as well 
 
-class fleetOfThings {
-    fleet: Fleet = new Fleet();
-    main() {
-        this.fleet.add(new Thing('Get milk'));
-        this.fleet.add(new Thing('Remove the obstacles'));
-        this.fleet.add(new Thing('Stand up'));
-        this.fleet.add(new Thing('Eat lunch'));
-        this.fleet.getThings()[2].complete();
-        this.fleet.getThings()[3].complete();
-    }
-    print() {
-        this.fleet.getThings().forEach(function (afonya) { console.log(afonya.letItBe()) });
-    }
+// class fleetOfThings {
+fleet: Fleet = new Fleet();
+main() {
+    this.fleet.add(new Thing('Get milk'));
+    this.fleet.add(new Thing('Remove the obstacles'));
+    this.fleet.add(new Thing('Stand up'));
+    this.fleet.add(new Thing('Eat lunch'));
+    this.fleet.getThings()[2].complete();
+    this.fleet.getThings()[3].complete();
+}
+print() {
+    this.fleet.getThings().forEach(function (afonya) { console.log(afonya.letItBe()) });
+}
 }
 
 // let fleet: Fleet = new Fleet();

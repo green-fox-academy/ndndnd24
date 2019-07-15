@@ -22,7 +22,7 @@ function connectingDots(which: any) {
     }
 }
 
-connectingDots(moarDotz);
+connectingDots(box);
 
 
 // Create a function that takes 1 parameter:
