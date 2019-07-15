@@ -1,28 +1,28 @@
 'use strict';
 
-import Person from './person';
+import Mentor from './mentor';
+import Student from './student';
 
-export class Cohort extends Person {
+class Cohort {
     cohortName: string;
-    students: string[];
-    mentors: string[];
+    students: Student[];
+    mentors: Mentor[];
 
-    constructor(name?: string, age?: number, gender?: string, cohortName?: string, students?: string[], mentors?: string[]) {
-        super(name, age, gender);
+    constructor(cohortName: string, students: Student[] = [], mentors: Mentor[] = []) {
         this.cohortName = cohortName;
         this.students = students;
         this.mentors = mentors;
     }
 
-    addStudent(students: string) {
+    addStudent(students: Student): void {
         this.students.push(students);
     }
 
-    addMentor(mentors: string) {
+    addMentor(mentors: Mentor): void {
         this.mentors.push(mentors);
     }
 
-    info() {
+    info(): void {
         console.log(`The ${this.cohortName} cohort has ${this.students.length} students and ${this.mentors.length} mentors.`);
     }
 }

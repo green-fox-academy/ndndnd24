@@ -2,7 +2,7 @@
 
 import Person from './person';
 
-export class Mentor extends Person {
+class Mentor extends Person {
     level: string;
 
     constructor(name?: string, age?: number, gender?: string, level: string = 'intermediate') {
@@ -10,11 +10,11 @@ export class Mentor extends Person {
         this.level = level;
     }
 
-    getGoal() {
+    getGoal(): void {
         console.log('My goal is: Educate brilliant junior software developer');
     }
 
-    introduce() {
+    introduce(): void {
         console.log(`Hi, I'm ${this.name} a ${this.age} year old ${this.gender} ${this.level} mentor.`);
     }
 }

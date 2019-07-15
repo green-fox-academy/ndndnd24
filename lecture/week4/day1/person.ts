@@ -5,17 +5,17 @@ class Person {
     age: number;
     gender: string;
 
-    constructor(name: string = 'Jane Doe', age: number = 30, gender: string = "female") {
+    constructor(name = 'Jane Doe', age = 30, gender = "female") {
         this.name = name;
         this.age = age;
         this.gender = gender;
     }
 
-    introduce() {
+    introduce(): void {
         console.log(`Hi, I'm ${this.name}, a ${this.age} year old ${this.gender}`);
     }
 
-    getGoal() {
+    getGoal(): void {
         console.log('My goal: Live for the moment!');
     }
 }

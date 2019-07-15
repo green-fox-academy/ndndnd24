@@ -2,25 +2,25 @@
 
 import Person from './person';
 
-export class Student extends Person {
+class Student extends Person {
     previousOrganisation: string;
-    skippedDays: number = 0;
+    skippedDays: number;
 
-    constructor(name?: string, age?: number, gender?: string, previousOrganisation: string = 'School of life', skippedDays: number = 0) {
+    constructor(name?: string, age?: number, gender?: string, previousOrganisation = 'School of life', skippedDays = 0) {
         super(name, age, gender);
         this.previousOrganisation = previousOrganisation;
         this.skippedDays = skippedDays;
     }
 
-    getGoal() {
+    getGoal(): void {
         console.log('My goal is: Be a junior software developer.');
     }
 
-    introduce() {
+    introduce(): void {
         console.log(`Hi, I'm ${this.name} a ${this.age} year old ${this.gender} from ${this.previousOrganisation} who skipped ${this.skippedDays} days from the course already.`);
     }
 
-    skipDays(numberOfDays: number) {
+    skipDays(numberOfDays: number): void {
         this.skippedDays += numberOfDays;
     }
 }

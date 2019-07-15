@@ -2,7 +2,7 @@
 
 import Person from './person';
 
-export class Sponsor extends Person {
+class Sponsor extends Person {
     company: string;
     hiredStudents: number;
 
@@ -12,15 +12,15 @@ export class Sponsor extends Person {
         this.hiredStudents = hiredStudents;
     }
 
-    getGoal() {
+    getGoal(): void {
         console.log('My goal is: Hire brilliant junior software developers.');
     }
 
-    introduce() {
+    introduce(): void {
         console.log(`Hi, I'm ${this.name} a ${this.age} year old ${this.gender} who represents ${this.company} and hired ${this.hiredStudents} students so far.`);
     }
 
-    hire() {
+    hire(): void {
         this.hiredStudents++;
     }
 }
