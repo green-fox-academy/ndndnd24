@@ -9,8 +9,11 @@ test('sum them', t => {
     // let actual = mySum.sumThem();
     // let expected = 45;
 
+    // let actual = mySum.integers.length;
+    // let expected = 0;
+
     let actual = mySum.integers.length;
-    let expected = 0;
+    let expected = 1;
 
     t.equal(actual, expected);
     t.end();
