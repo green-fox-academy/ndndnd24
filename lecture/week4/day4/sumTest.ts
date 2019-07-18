@@ -12,9 +12,12 @@ test('sum them', t => {
     // let actual = mySum.integers.length;
     // let expected = 0;
 
+    // let actual = mySum.integers.length;
+    // let expected = 1;
+
     let actual = mySum.integers.length;
     let expected = 1;
 
-    t.equal(actual, expected);
+    t.notEqual(actual, expected);
     t.end();
 })
