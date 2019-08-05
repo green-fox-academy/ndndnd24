@@ -1,16 +1,18 @@
 .container {
+  background-color: yellow;
   display: flex;
-  height: 650px;
+  height: 654px;
   margin: 0;
   padding: 0;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 .item {
-    background-color: purple;
-    width: 200px;
-    height: 200px;
+  background-color: purple;
+  width: 200px;
+  height: 200px;
+  margin-left: 5px;
 }
 
 ul {
@@ -20,5 +22,4 @@ ul {
 body {
   margin: 0;
   padding: 0;
-  background-color: yellow;
 }
