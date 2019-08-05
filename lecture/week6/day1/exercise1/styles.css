@@ -1,24 +1,26 @@
 .container {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
+  height: 650px;
 }
 
 .item_green {
     background-color: green;
-    width: 25%;
-    height: 300px;
+    width: 300px;
+    height: 25%;
 }
 
 .item_yellow {
     background-color: yellow;
-    width: 50%;
-    height: 300px;
+    width: 300px;
+    height: 50%;
+    order: 1;
 }
 
 .item_purple {
     background-color: purple;
-    width: 25%;
-    height: 300px;
+    width: 300px;
+    height: 25%;
 }
 
 body {
