@@ -1,0 +1,37 @@
+/* body {
+    background-color: red;
+} */
+
+/* .container {
+  display: flex;
+  flex-flow: nowrap;
+  height: 100px40px;
+  background-color: green;
+  align-items: center;
+  justify-content: space-around;
+} */
+
+.container {
+  display: flex;
+  /* background-color: green; */
+  /* width: 40%;
+  height: 40%; */
+}
+
+.item_green {
+    background-color: green;
+    width: 400px;
+    height: 400px;
+}
+
+.item_yellow {
+    background-color: yellow;
+    width: 400px;
+    height: 400px;
+}
+
+.item_purple {
+    background-color: purple;
+    width: 400px;
+    height: 400px;
+}
