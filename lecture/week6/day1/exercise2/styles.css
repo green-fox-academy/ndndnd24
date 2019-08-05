@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 650px;
+}
+
+.item_purple {
+    background-color: purple;
+    width: 200px;
+    height: 200px;
+}
+
+body {
+  margin: 0;
+  padding:  0;
+  background-color: yellow
+}
