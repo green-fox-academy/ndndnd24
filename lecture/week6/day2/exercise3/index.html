@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Workshop: innerHTML, textContent</title>
+</head>
+
+<body>
+    <p class="apple">apple</p>
+    <p class="balloon">banana</p>
+    <p class="cat">car</p>
+    <p class="animals">goat rabbit <strong>cat</strong> dog</p>
+
+    <script>
+        let animalsToAdd = ' ' + document.querySelector(".animals").innerText;
+        // console.log(animalsToAdd);
+        document.querySelector(".apple").innerText += animalsToAdd;
+        document.querySelector(".balloon").innerText += animalsToAdd;
+        document.querySelector(".cat").innerText += animalsToAdd;
+        document.querySelector(".animals").innerText += animalsToAdd;
+        // apple += animalsToAdd;
+        // console.log(apple);
+        // let balloon = document.querySelector(".baloon");
+        // console.log(apple.innerText);
+        // let apple = document.querySelector(".cat");
+        // console.log(apple.innerText);
+        // let apple = document.querySelector(".apple");
+        // console.log(apple.innerText);
+
+    </script>
+
+
+    <!-- You can work in the html or in a separate js file. Like:
+    <script>
+    1)  Fill every paragraph with the last one's content.
+    2)  Do the same again, but you should keep the cat strong.
+    </script>
+    OR
+    <script src="content-1.js"></script> -->
+</body>
+
+</html>
