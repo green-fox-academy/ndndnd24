@@ -27,6 +27,10 @@
         let containerClass = document.querySelector(".container");
         heading.textContent = 'I can add elements to the DOM!';
         containerClass.appendChild(heading);
+
+        let newImage = document.createElement('img');
+        newImage.setAttribute('src', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/TigerITankTunis.jpg/250px-TigerITankTunis.jpg');
+        containerClass.appendChild(newImage);
     </script>
 
     <!-- You can work in the html or in a separate js file. Like:
