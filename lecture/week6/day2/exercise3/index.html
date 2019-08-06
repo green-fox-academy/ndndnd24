@@ -13,10 +13,8 @@
     <p class="animals">goat rabbit <strong>cat</strong> dog</p>
 
     <script>
-        document.querySelector(".apple").innerHTML += ' ' + document.querySelector(".animals").innerHTML;
-        document.querySelector(".balloon").innerHTML += ' ' + document.querySelector(".animals").innerHTML;
-        document.querySelector(".cat").innerHTML += ' ' + document.querySelector(".animals").innerHTML;
-        document.querySelector(".animals").innerHTML += ' ' + document.querySelector(".animals").innerHTML;
+        let allItem = document.querySelectorAll("p");
+        allItem.forEach(i => i.innerHTML += ' ' + document.querySelector(".animals").innerHTML);
 
     </script>
 
