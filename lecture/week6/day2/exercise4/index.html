@@ -16,14 +16,18 @@
 
     <script>
         let imageURL = document.querySelector('img');
-        // console.log(imageURL.getAttribute('src'));
         imageURL.setAttribute('src', "https://i.pinimg.com/474x/74/4c/eb/744ceba7997c3b880be3640f26178030.jpg")
         let linkChange = document.querySelector('a');
-        // console.log(linkChange.getAttribute('href'));
         linkChange.setAttribute('href', 'https://www.greenfoxacademy.com');
         linkChange.setAttribute('target', 'blank');
+        let buttons = document.querySelectorAll('button');
 
-
+        let secondButton = document.querySelector(".this-one");
+        console.log(secondButton);
+        console.log(secondButton.getAttribute('disabled'));
+        secondButton.setAttribute('disabled', 'true');
+        console.log(secondButton.getAttribute('disabled'));
+        document.querySelector(".this-one").innerText = 'Don\'t click on me';
     </script>
 
 
