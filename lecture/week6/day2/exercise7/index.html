@@ -26,9 +26,14 @@
 
     <script>
         let button = document.querySelector("button");
-
         button.onclick = () => {
-            document.querySelector("div").className = "party";
+            if (document.querySelector("div").className !== "party") {
+                document.querySelector("div").className = "party";
+                button.innerText = "Off party";
+            } else {
+                document.querySelector("div").className = "";
+                button.innerText = "Party";
+            }
         }
     </script>
 
