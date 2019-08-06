@@ -13,21 +13,20 @@
     </section>
     <p class="asteroid big">The Businessman</p>
     <div class="asteroid b329 big">The Lamplighter</div>
+
     <script>
         let king = document.querySelector(".asteroid");
         console.log(king);
         let businessLamp = document.querySelectorAll(".big");
         businessLamp.forEach(i => console.log(i));
         let conceitedKing = document.querySelectorAll(".container");
-        // console.log(conceitedKing);
+        // conceitedKing.forEach(i => alert(i.innerText));
         conceitedKing.forEach(i => {
             let splitted = i.innerText.split('\n');
             splitted.forEach(e => alert(e))
         });
-        // alert(conceitedKing.innerText);
         let noBusiness = document.querySelectorAll("div");
         noBusiness.forEach(i => console.log(i.innerHTML));
-
     </script>
 
     <!-- You can work in the html or in a separate js file. Like:
