@@ -10,6 +10,7 @@ app.get('/', (req, res) => {
     // render `home.ejs`
     res.render('home', {
         todo: todos,
+        title: 'Things to do today:'
     });
 });
 
