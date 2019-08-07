@@ -9,8 +9,7 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res) => {
     // render `home.ejs`
     res.render('home', {
-        title: 'Hello World',
-        kiscica: 'dani',
+        todo: todos,
     });
 });
 
@@ -18,3 +17,9 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
 });
+
+const todos = [
+    'get up',
+    'survive',
+    'go back to bed',
+]
