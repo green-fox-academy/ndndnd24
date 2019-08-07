@@ -7,7 +7,23 @@
 </head>
 
 <body>
-    <h1>Welcome back, <%= name %>!</h1>
+    <h1>Cocktails</h1>
+    <p><%= all%></p>
+    <ul>
+        <% if (alcohol == 'gin') { %>
+        <% for (let i = 0; i < cocktail.length; i++) { %>
+        <li>
+            <%= cocktail[i].name %>
+            <%= cocktail[i].price %>
+            <%= cocktail[i].contains %>
+            <%= cocktail[i].isAlcoholic %>
+        </li>
+        <% }} else { %>
+        <li>'Yolo'</li>
+        <li>'Nicht yolo'</li>
+        <% } %>
+
+    </ul>
 </body>
 
 </html>
