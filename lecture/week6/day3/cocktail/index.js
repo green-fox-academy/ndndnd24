@@ -7,11 +7,16 @@ app.set('view engine', 'ejs');
 
 // home page
 app.get('/', (req, res) => {
+    let filtered = []
+    if (!req.query.alcohol) {
+        filtered = cocktails;
+    } else {
+        filtered = cocktails.filter(item => item.contains.indexOf(req.query.alcohol) >= 0);
+    }
     // render `home.ejs`
     res.render('home', {
-        cocktail: cocktails,
+        cocktail: filtered,
         all: alcoholList,
-        alcohol: req.query.alcohol || cocktails,
     });
 });
 
