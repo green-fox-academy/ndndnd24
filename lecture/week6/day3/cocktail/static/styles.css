@@ -1,0 +1,55 @@
+h1 {
+    font-size: 50px;
+}
+
+body {
+    font-family: Verdana;
+}
+
+a {
+    color: purple;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px;
+    font-weight: bold;
+}
+
+th {
+    text-transform: uppercase;
+    
+}
+
+table {
+    margin-top: 30px;
+}
+
+body {
+    margin: 30px;
+}
+
+#menu {
+  border-collapse: collapse;
+  width: 33%;
+}
+
+#menu td, #menu th {
+    border: 3px solid white;
+    padding: 15px;
+}
+
+#menu tr:nth-child(even){background-color: #f2f2f2;}
+
+#menu tr:hover {background-color: #ddd;}
+
+#menu th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+  background-color: black;
+  color: white;
+}
+
+#price {
+    text-align: center;
+    font-weight: bold;
+}

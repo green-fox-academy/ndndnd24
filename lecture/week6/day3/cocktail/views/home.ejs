@@ -3,23 +3,43 @@
 
 <head>
     <meta charset="utf-8">
+    <link href="../static/styles.css" type="text/css" rel="stylesheet">
     <title>Cocktail</title>
 </head>
 
 <body>
     <h1>Cocktails</h1>
-    <p><%= all%></p>
-    <ul>
+    <a href="http://localhost:3000/">All</a>
+    <!-- <% for (let i = 0; i < all.length; i++) { %>
+    <% let currentAlcohol = all[i] %>
+    <% let currentLink = 'http://localhost:3000' %>
+    <% currentLink += currentAlcohol %>
+    <a href=<%= currentLink %> <%= all[i] %> </a> <% } %>  -->
+    <a href="http://localhost:3000/?alcohol=gin"><%= all[0] %></a>
+    <a href="http://localhost:3000/?alcohol=vodka"><%= all[1] %></a>
+    <a href="http://localhost:3000/?alcohol=rum"><%= all[2] %></a>
+    <a href="http://localhost:3000/?alcohol=tequila"><%= all[3] %></a>
+    <table id='menu'>
+        <tr>
+            <th>name</th>
+            <th>price</th>
+        </tr>
         <% for (let i = 0; i < cocktail.length; i++) { %>
-        <li>
-            <%= cocktail[i].name %>
-            <%= cocktail[i].price %>
-            <%= cocktail[i].contains %>
-            <%= cocktail[i].isAlcoholic %>
-        </li>
+        <tr>
+            <td>
+                <p>
+                    <%= cocktail[i].name %>
+                </p>
+                <%= cocktail[i].contains %>
+                <!-- <%= cocktail[i].isAlcoholic %> -->
+            </td>
+            <td id='price'>
+                <%= cocktail[i].price %>
+            </td>
+        </tr>
         <% } %>
 
-    </ul>
+    </table>
 </body>
 
 </html>
