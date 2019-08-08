@@ -1,10 +1,17 @@
 'use strict';
 
 import Carrier from "./carrier";
+import Aircrafts from "./aircrafts";
 
 let carrier: Carrier = new Carrier(30, 5000);
 let enemyCarrier: Carrier = new Carrier(5000, 2500);
 
+// let f16v1: Aircrafts = new Aircrafts()
+// let f16v2: Aircrafts = new Aircrafts()
+// let f16v3: Aircrafts = new Aircrafts()
+// let f16v4: Aircrafts = new Aircrafts()
+// let f35v1: Aircrafts = new Aircrafts()
+// let f35v2: Aircrafts = new Aircrafts()
 
 carrier.add('F35');
 carrier.add('F16');

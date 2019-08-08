@@ -8,9 +8,9 @@ class Garden {
     flowers: Flower[];
     waterInput: number;
 
-    constructor(trees: Tree[] = [], flowers: Flower[] = [], waterInput?: number) {
-        this.trees = trees;
-        this.flowers = flowers;
+    constructor(trees: Tree[], flowers: Flower[], waterInput?: number) {
+        this.trees = [];
+        this.flowers = [];
         this.waterInput = waterInput;
     }
 
@@ -37,7 +37,6 @@ class Garden {
 
     watering(waterInput: number) {
         console.log(`Watering with ${waterInput}`);
-
         let x: number = 0;
         for (let i: number = 0; i < this.flowers.length; i++) {
             if (this.flowers[i].waterLvl < 5) {
