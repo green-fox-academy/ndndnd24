@@ -45,6 +45,7 @@
             let divSection = document.getElementById("divsection");
             let div = document.createElement("div");
             div.textContent = i + 1;
+            div.className = "not-prime"
             divSection.appendChild(div);
         }
 
@@ -53,7 +54,7 @@
         let searchedNumber = 70;
         for (let i = 0; i < divTags.length; i++) {
             if (divTags[i].textContent == searchedNumber) {
-                divTags[i].className = "not-prime";
+                divTags[i].className = "prime";
                 break;
             }
         }
