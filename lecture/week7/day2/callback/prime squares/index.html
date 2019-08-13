@@ -51,17 +51,26 @@
             divSection.appendChild(div);
         }
 
+        let primeNumbers = [];
+
         for (let i = 0; i < 100; i++) {
-            let timeoutId = setTimeout(function () {
-                let divTags = document.getElementsByTagName("div");
-                let searchedNumber = i + 1;
-                let isItPrimeBoolean = isItPrime(searchedNumber);
-                if (isItPrimeBoolean) {
-                    divTags[i].className = "prime";
-                };
-            }, 100 * (i + 1));
+            let divTags = document.getElementsByTagName("div");
+            let searchedNumber = i + 1;
+            if (isItPrime(searchedNumber)) {
+                primeNumbers.push(i + 1);
+            }
         }
 
+        for (let j = 0; j < primeNumbers.length; j++) {
+            let divTags = document.getElementsByTagName("div");
+            let searchText = primeNumbers[j];
+
+            for (let i = 0; i < divTags.length; i++) {
+                if (divTags[i].textContent == searchText) {
+                    divTags[i].className = "prime";
+                }
+            }
+        }
 
         function isItPrime(number) {
             for (let j = 1; j <= number; j++) {
