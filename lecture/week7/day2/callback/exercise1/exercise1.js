@@ -3,6 +3,10 @@
 const mapWith = (array, callback) => {
     let output = [];
 
+    // for (let i = 0; i < array.length; i++) {
+    //     output[i] = callback(array[i]);
+    // }
+
     for (let i = 0; i < array.length; i++) {
         output[i] = callback(array[i]);
     }
@@ -17,9 +21,18 @@ const addOne = (number) => {
     return number + 1;
 }
 
+const removeSecondLetter = (string) => {
+    let outputString = '';
+    for (let i = 0; i < string.length; i++) {
+        outputString += string.slice(i, i + 1);
+        i++;
+    }
+    return outputString;
+}
+
 // Exercise 1:
 
-console.log(mapWith([1, 2, 3], addOne));
+// console.log(mapWith([1, 2, 3], addOne));
 //expected result: [2, 3, 4]
 
 // Exercise 2:
@@ -28,5 +41,5 @@ console.log(mapWith([1, 2, 3], addOne));
 
 const words = ['map', 'reduce', 'filter'];
 
-//console.log(mapWith(words, removeSecondLetter));
+console.log(mapWith(words, removeSecondLetter));
 // expected result: ['mp','rdc', 'fle']
