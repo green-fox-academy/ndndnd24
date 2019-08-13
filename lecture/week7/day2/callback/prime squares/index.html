@@ -41,6 +41,8 @@
     </section>
 
     <script>
+        let counter = 2;
+
         for (let i = 0; i < 100; i++) {
             let divSection = document.getElementById("divsection");
             let div = document.createElement("div");
@@ -49,30 +51,27 @@
             divSection.appendChild(div);
         }
 
-
-        let divTags = document.getElementsByTagName("div");
-        let searchedNumber = 70;
-        for (let i = 0; i < divTags.length; i++) {
-            if (divTags[i].textContent == searchedNumber) {
+        for (let i = 0; i < 100; i++) {
+            let divTags = document.getElementsByTagName("div");
+            let searchedNumber = i + 1;
+            let isItPrimeBoolean = isItPrime(searchedNumber);
+            if (isItPrimeBoolean) {
                 divTags[i].className = "prime";
-                break;
             }
         }
 
-        let counter = 2;
 
-        function findPrime(number) {
-            while (counter < number) {
-                if (number % counter === 0) {
-                    return true;
-                } else {
-                    counter++;
-                    findPrime(number);
+        function isItPrime(number) {
+            for (let j = 1; j <= number; j++) {
+                if (j !== 1 && j !== number) {
+                    if (number % j === 0) {
+                        return false;
+                    }
                 }
             }
-            counter = 2;
-            return false;
+            return true;
         }
+
         //   1: generate 100 divs to the <section> element and add index numbers to it as the element's textContent
         //   2: Create a function that adds a 'not-prime' class to a div if it's not a prime and 'prime' if it is
         //   3: Create a timer that keeps calling the prime validatior function until it reaches the end of elements
