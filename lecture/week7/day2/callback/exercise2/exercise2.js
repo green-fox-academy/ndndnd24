@@ -3,7 +3,7 @@
 // Write a program that prints apple after 3 seconds.
 
 function writeApple(callback) {
-    callback;
+    setTimeout(() => callback, 1000);
 }
 
 function logStuff(stringToLog) {
