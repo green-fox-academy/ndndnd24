@@ -6,6 +6,8 @@
 // melon -> after 3 seconds
 // grapes -> after 5 seconds
 
+
+
 setTimeout(() => {
     console.log('grapes'); // prints after one second
 }, 5000);
@@ -16,3 +18,7 @@ setTimeout(() => {
     console.log('pear'); // prints after one second
 }, 1000);
 console.log('apple'); // prints first
+
+function logStuff(whatToLog) {
+    console.log(whatToLog)
+}

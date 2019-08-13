@@ -3,11 +3,12 @@
 // Write a program that prints apple after 3 seconds.
 
 function writeApple(callback) {
-    setTimeout(() => callback, 1000);
+    setTimeout(() => callback('Apple'), 1000);
+    callback('Pear');
 }
 
 function logStuff(stringToLog) {
     console.log(stringToLog);
 }
 
-writeApple(logStuff('Apple'));
+writeApple(console.log);
