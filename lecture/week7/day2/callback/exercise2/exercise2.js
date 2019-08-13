@@ -3,7 +3,7 @@
 // Write a program that prints apple after 3 seconds.
 
 function writeApple(callback) {
-    setTimeout(() => callback('Apple'), 1000);
+    setTimeout(() => callback('Apple'), 3000);
     callback('Pear');
 }
 

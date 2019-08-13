@@ -8,6 +8,8 @@
 
 
 
+
+
 setTimeout(() => {
     console.log('grapes'); // prints after one second
 }, 5000);
@@ -19,6 +21,13 @@ setTimeout(() => {
 }, 1000);
 console.log('apple'); // prints first
 
-function logStuff(whatToLog) {
-    console.log(whatToLog)
+
+
+
+function logStuff(callback, array) {
+    for (let i = 0; i < array.length; i++) {
+        setTimeout(() => {
+            callback(array[i]);
+        }, i * 1000 + ((i - 1) * 1000));
+    }
 }
