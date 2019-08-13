@@ -41,48 +41,36 @@
     </section>
 
     <script>
-        let counter = 2;
+        let timer = 0;
 
         for (let i = 0; i < 100; i++) {
             let divSection = document.getElementById("divsection");
             let div = document.createElement("div");
             div.textContent = i + 1;
-            div.className = "not-prime"
             divSection.appendChild(div);
-        }
-
-        let primeNumbers = [];
-
-        for (let i = 0; i < 100; i++) {
-            let divTags = document.getElementsByTagName("div");
-            let searchedNumber = i + 1;
-            if (isItPrime(searchedNumber)) {
-                primeNumbers.push(i + 1);
+            if (isItPrime(i + 1)) {
+                timer++;
+                setTimeout(function () {
+                    div.className = 'prime';
+                }, 100 * timer);
+            } else {
+                div.className = 'not-prime';
             }
-        }
-
-        for (let j = 0; j < primeNumbers.length; j++) {
-            setTimeout(function () {
-                let divTags = document.getElementsByTagName("div");
-                let searchText = primeNumbers[j];
-
-                for (let i = 0; i < divTags.length; i++) {
-                    if (divTags[i].textContent == searchText) {
-                        divTags[i].className = "prime";
-                    }
-                }
-            }, 100 + 100 * j);
         }
 
         function isItPrime(number) {
-            for (let j = 1; j <= number; j++) {
-                if (j !== 1 && j !== number) {
-                    if (number % j === 0) {
-                        return false;
+            if (number === 1) {
+                return false;
+            } else {
+                for (let j = 1; j <= number; j++) {
+                    if (j !== 1 && j !== number) {
+                        if (number % j === 0) {
+                            return false;
+                        }
                     }
                 }
+                return true;
             }
-            return true;
         }
 
         //   1: generate 100 divs to the <section> element and add index numbers to it as the element's textContent
