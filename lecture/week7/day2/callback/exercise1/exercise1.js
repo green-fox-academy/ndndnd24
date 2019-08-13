@@ -10,6 +10,7 @@ const mapWith = (array, callback) => {
     for (let i = 0; i < array.length; i++) {
         output[i] = callback(array[i]);
     }
+
     // The mapWith() function should iterate over the given array and call the callback function on every element.
     // It stores the callback return values in the output.
     // The mapWith() should return with the output array.
