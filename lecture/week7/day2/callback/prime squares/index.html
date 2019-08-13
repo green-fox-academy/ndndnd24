@@ -62,14 +62,16 @@
         }
 
         for (let j = 0; j < primeNumbers.length; j++) {
-            let divTags = document.getElementsByTagName("div");
-            let searchText = primeNumbers[j];
+            setTimeout(function () {
+                let divTags = document.getElementsByTagName("div");
+                let searchText = primeNumbers[j];
 
-            for (let i = 0; i < divTags.length; i++) {
-                if (divTags[i].textContent == searchText) {
-                    divTags[i].className = "prime";
+                for (let i = 0; i < divTags.length; i++) {
+                    if (divTags[i].textContent == searchText) {
+                        divTags[i].className = "prime";
+                    }
                 }
-            }
+            }, 100 + 100 * j);
         }
 
         function isItPrime(number) {
