@@ -43,10 +43,23 @@
     <script>
         for (let i = 0; i < 100; i++) {
             let divSection = document.getElementById("divsection");
-            let div = document.createElement('div');
+            let div = document.createElement("div");
             div.textContent = i + 1;
             divSection.appendChild(div);
         }
+
+        let divTags = document.getElementsByTagName("div");
+        let searchedNumber = 75;
+
+        for (let i = 0; i < divTags.length; i++) {
+            if (divTags[i].textContent == searchedNumber) {
+                divTags[i].className = "not-prime";
+                break;
+            }
+        }
+
+        // let element = document.getElementById("myDIV");
+        // element.classList.add("mystyle");
 
         //   1: generate 100 divs to the <section> element and add index numbers to it as the element's textContent
         //   2: Create a function that adds a 'not-prime' class to a div if it's not a prime and 'prime' if it is
