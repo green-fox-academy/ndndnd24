@@ -60,4 +60,36 @@ app.get('/appenda/:appendable', (req, res) => {
     res.send(appenda);
 });
 
+app.post('/dountil/:action', (req, res) => {
+    let solution = 0;
+    let response = {};
+    if (typeof req.body.until === "number" && req.body.until !== undefined && req.body.until !== '') {
+        if (req.params.action === 'sum') {
+            for (let i = 1; i <= req.body.until; i++) {
+                solution += i;
+                response = {
+                    result: solution
+                }
+            };
+        } else if (req.params.action === 'factor') {
+            solution = 1;
+            for (let i = 1; i <= req.body.until; i++) {
+                solution = solution * i;
+                response = {
+                    result: solution
+                }
+            };
+        } else {
+            response = {
+                error: "No path!"
+            };
+        }
+    } else {
+        response = {
+            error: "Please provide a number!"
+        };
+    }
+    res.json(response);
+});
+
 app.listen(PORT, () => console.log(`App is listening on ${PORT}`));
