@@ -67,18 +67,18 @@ app.post('/dountil/:action', (req, res) => {
         if (req.params.action === 'sum') {
             for (let i = 1; i <= req.body.until; i++) {
                 solution += i;
-                response = {
-                    result: solution
-                }
             };
+            response = {
+                result: solution
+            }
         } else if (req.params.action === 'factor') {
             solution = 1;
             for (let i = 1; i <= req.body.until; i++) {
                 solution = solution * i;
-                response = {
-                    result: solution
-                }
             };
+            response = {
+                result: solution
+            }
         } else {
             response = {
                 error: "No path!"
