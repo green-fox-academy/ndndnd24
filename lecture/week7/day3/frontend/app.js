@@ -47,10 +47,17 @@ app.get('/greeter', (req, res) => {
         } else {
             greeter = {
                 error: "Please provide a name and a title!"
-            }
+            };
         }
     }
     res.send(greeter);
-})
+});
+
+app.get('/appenda/:appendable', (req, res) => {
+    let appenda = {
+        appended: (req.params.appendable + 'a')
+    };
+    res.send(appenda);
+});
 
 app.listen(PORT, () => console.log(`App is listening on ${PORT}`));
