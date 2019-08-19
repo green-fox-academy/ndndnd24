@@ -38,12 +38,16 @@
                     <% } %>
                 </p>
                 <p>
-
-                    <%= cocktail[i].contains %>
+                    <% let lastIngredient = 0 %>
+                    <% for (let j = 0; j < (cocktail[i].contains.length -1); j++) { %>
+                    <%= cocktail[i].contains[j] %>,
+                    <% lastIngredient = j %>
+                    <% } %>
+                    <%= cocktail[i].contains[lastIngredient + 1] %>
                 </p>
             </td>
             <td id='price'>
-                <%= cocktail[i].price %>
+                <%= cocktail[i].price %> Ft
             </td>
         </tr>
         <% } %>
