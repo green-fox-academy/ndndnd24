@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+    <link href="../static/styles.css" type="text/css" rel="stylesheet">
+    <title>Weather</title>
+</head>
+
+<body>
+    <% if (forecasts.length > 1) { %>
+    <ul class="container_cities">
+        <% for (let i = 0; i < forecasts.length; i++) { %>
+        <a href="http://localhost:3001/?city=<%=forecasts[i].city%>" class="cities">
+            <li class="cities_list">
+                <div class="location">
+                    <p class="location_city">
+                        <%= forecasts[i].city %>
+                    </p>
+                    <p class="location_country">
+                        <%= forecasts[i].location %>
+                    </p>
+                </div>
+                <div class="degree">
+                    <%= forecasts[i].weather[0].temp %>°C
+                </div>
+                <div class="icon">
+                    <img src="./static/<%= forecasts[i].weather[0].icon%>.png">
+                </div>
+            </li>
+        </a>
+        <% } %>
+    </ul>
+    <% } else { %>
+    <ul class="container_onecity">
+        <% for (let j = 0; j < forecasts.weather.length; j++) { %>
+        <li class="oneCity">
+            <div class="icon_one">
+
+                <img src="./static/<%= forecasts.weather[j].icon%>.png">
+            </div>
+            <div class="degree_one">
+
+                <%= forecasts.weather[j].temp %>°C
+            </div>
+            <div class="message_one">
+
+                <%= forecasts.weather[j].message %>
+            </div>
+        </li>
+        <% } %>
+    </ul>
+    <% } %>
+
+    </ul>
+</body>
+
+</html>
