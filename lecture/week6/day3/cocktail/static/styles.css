@@ -34,7 +34,12 @@ body {
 
 #menu td, #menu th {
     border: 3px solid white;
-    padding: 15px;
+    /* padding-left: 1px; */
+}
+
+.cocktail_main {
+    padding-left: 20px;
+    padding-top: 10px;
 }
 
 #menu tr:nth-child(even){background-color: #f2f2f2;}
@@ -45,11 +50,23 @@ body {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
-  background-color: black;
-  color: white;
+    background-color: black;
+    color: white;
 }
 
 #price {
     text-align: center;
     font-weight: bold;
+}
+
+#bold {
+    font-weight: bold;
+}
+
+.inline {
+    display: inline;
+}
+
+p {
+    padding: 0px;
 }

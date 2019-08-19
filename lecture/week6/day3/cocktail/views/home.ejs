@@ -26,12 +26,21 @@
         </tr>
         <% for (let i = 0; i < cocktail.length; i++) { %>
         <tr>
-            <td>
-                <p>
+            <td class="cocktail_main">
+                <p class="inline" id="bold">
                     <%= cocktail[i].name %>
+                    <% if (cocktail[i].isAlcoholic) { %>
+                    <% } else { %>
+                    <p class="inline">
+
+                        (non-alcoholic)
+                    </p>
+                    <% } %>
                 </p>
-                <%= cocktail[i].contains %>
-                <!-- <%= cocktail[i].isAlcoholic %> -->
+                <p>
+
+                    <%= cocktail[i].contains %>
+                </p>
             </td>
             <td id='price'>
                 <%= cocktail[i].price %>
