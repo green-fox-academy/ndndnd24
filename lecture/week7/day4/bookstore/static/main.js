@@ -1,18 +1,5 @@
 'use strict';
 
-// Why we need this XHR (html content)?
-//   example of gallery, or imdb, retrieve data do not render on backend side
-//   get information from a remote server without reload the page
-
-// https://chain-chess.glitch.me
-
-// How to do this?
-// http overview
-//   two computers, far away
-//   connection has to be established
-//   response sent back
-//   response is processed
-
 const xhr = new XMLHttpRequest();
 xhr.open('GET', 'http://localhost:3002/titles');
 const bodySelect = document.querySelector('body');
@@ -22,7 +9,6 @@ xhr.onreadystatechange = function () {
         if (xhr.status === 200) {
             let result = xhr.responseText;
             let parsedResult = JSON.parse(result);
-
             // titlesOfTheBooks(parsedResult);
             tableOfTheBooks(parsedResult);
         }
@@ -89,24 +75,8 @@ function tableOfTheBooks(data) {
     createPrice.textContent = "Price";
     createTr.appendChild(createPrice);
     titlesOfTheBooksTrial(data, createTable);
-
-    // for (let i = 0; i < data.length; i++) {
-    //     let newTr = document.createElement('tr')
-    //     createTable.appendChild(newTr);
-    //     createTd.textContent = data[i].book_name;
-    //     newTr.appendChild(createTd);
-
-    // for (let j = 0; j < 5; j++) {
-    //     createTable.appendChild(newTr);
-    //     createTd.textContent = "asd" + j;
-    //     newTr.appendChild(createTd);
-    // }
 }
-// }
 
 xhr.send();
 
 console.log('request has been sent');
-
-// API Keys
-// Status codes
