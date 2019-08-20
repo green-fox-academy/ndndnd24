@@ -8,10 +8,10 @@ const PORT = 3009;
 const mysql = require('mysql');
 
 let conn = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "almafa",
-    database: "reddit"
+    host: 'localhost',
+    user: 'root',
+    password: 'almafa',
+    database: 'reddit'
 });
 
 conn.connect(function (err) {
@@ -21,8 +21,6 @@ conn.connect(function (err) {
     }
     console.log('Connection established');
 });
-
-conn.end();
 
 app.get('/hello', (req, res) => {
     // console.log('Hello world');
