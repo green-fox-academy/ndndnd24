@@ -37,8 +37,28 @@ app.get('/titles', (req, res) => {
         // console.log(err);
         res.json(rows);
     });
-    // let kiskutya = 'asdasdasd';
-    // res.json(kiskutya);
+});
+
+app.get('/books', (req, res) => {
+    if (req.query.category) {
+        connection.query(`select book_mast.book_price, book_mast.book_name, author.aut_name, category.cate_descrip, publisher.pub_name from book_mast, author, category, publisher where book_mast.aut_id = author.aut_id and book_mast.cate_id = category.cate_id and book_mast.pub_id = publisher.pub_id and category.cate_descrip = \'${req.query.category}\';`, (err, rows) => {
+            res.json(rows);
+        });
+    } else if (req.query.publisher) {
+        connection.query(`select book_mast.book_price, book_mast.book_name, author.aut_name, category.cate_descrip, publisher.pub_name from book_mast, author, category, publisher where book_mast.aut_id = author.aut_id and book_mast.cate_id = category.cate_id and book_mast.pub_id = publisher.pub_id and publisher.pub_name = \'${req.query.publisher}\';`, (err, rows) => {
+            res.json(rows);
+        });
+    } else if (req.query.plt) {
+        connection.query(`select book_mast.book_price, book_mast.book_name, author.aut_name, category.cate_descrip, publisher.pub_name from book_mast, author, category, publisher where book_mast.aut_id = author.aut_id and book_mast.cate_id = category.cate_id and book_mast.pub_id = publisher.pub_id and book_mast.book_price < \'${req.query.plt}\';`, (err, rows) => {
+            res.json(rows);
+        });
+    } else if (req.query.pgt) {
+        connection.query(`select book_mast.book_price, book_mast.book_name, author.aut_name, category.cate_descrip, publisher.pub_name from book_mast, author, category, publisher where book_mast.aut_id = author.aut_id and book_mast.cate_id = category.cate_id and book_mast.pub_id = publisher.pub_id and book_mast.book_price > \'${req.query.pgt}\';`, (err, rows) => {
+            res.json(rows);
+        });
+    } else {
+        res.json('I can\'t find any book in the database, based on your given parameters');
+    }
 });
 
 app.listen(PORT, () => console.log(`App is listening on ${PORT}`));

@@ -21,11 +21,8 @@ xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
             let result = xhr.responseText;
-            // console.log(result);
-            // console.log(typeof result);
             let parsedResult = JSON.parse(result);
-            // console.log(typeof parsedResult);
-            // console.log(parsedResult);
+
             // titlesOfTheBooks(parsedResult);
             tableOfTheBooks(parsedResult);
         }
