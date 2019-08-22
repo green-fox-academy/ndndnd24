@@ -54,34 +54,69 @@
         const zooming = document.querySelectorAll('[data-action="zoom"]');
         const navigation = document.querySelectorAll('[data-action="move"]');
         const backgroundImage = document.getElementsByClassName('img-inspector')[0];
+        let currentZoom = 200;
+        let currentXPosition = 0;
+        let currentYPosition = 0;
 
-        console.log(backgroundImage);
+        const nav = document.querySelector('nav');
+        console.log(nav);
 
-        backgroundImage.style.backgroundSize = '100%';
-        // navigation[0].style.color = 'blue';
+        let up = document.querySelector('[data-direction="up"]');
+        let down = document.querySelector('[data-direction="down"]');
+        let left = document.querySelector('[data-direction="left"]');
+        let right = document.querySelector('[data-direction="right"]');
+        let i = 0;
+        let j = 0;
 
-
-        function whichZoomingButton() {
-
+        // function whichButton() {
+        up.onclick = function () {
+            j = 0;
+            console.log(j);
+            return j;
         }
 
-        function whichMovingButton() {
-
+        down.onclick = function () {
+            j = 1;
+            console.log(j);
+            return j;
         }
+
+        left.onclick = function () {
+            j = 2;
+            console.log(j);
+            return j;
+        }
+
+        right.onclick = function () {
+            j = 3;
+            console.log(j);
+            return j;
+        }
+        // }
 
         function moveTheImage() {
-            // if (navigation.data - direction === "down") {
-            //     console.log('yas');
-
-            // }
+            if (j === 0) {
+                currentYPosition += 10;
+            } else if (j === 1) {
+                currentYPosition -= 10;
+            } else if (j === 2) {
+                currentXPosition += 10;
+            } else if (j === 3) {
+                currentXPosition -= 10;
+            }
+            backgroundImage.style.backgroundPositionX = `${currentXPosition}px`;
+            backgroundImage.style.backgroundPositionY = `${currentYPosition}px`;
         }
 
         function zoomTheImage() {
-            backgroundImage.style.backgroundSize = '100%';
+            if (i === 0) {
+                currentZoom = currentZoom * 1.2;
+            } else if (i === 1) {
+                currentZoom = currentZoom * 0.8;
+            }
+            backgroundImage.style.backgroundSize = `${currentZoom}%`;
         }
 
-        let i = 0;
-        let j = 0;
         zooming[i].addEventListener('click', zoomTheImage);
         navigation[j].addEventListener('click', moveTheImage);
 
