@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Workshop: EventListeners</title>
+</head>
+
+<body id="root">
+    <ul>
+        <li>apple</li>
+        <li>balloon</li>
+        <li>cat</li>
+        <li>dolphin</li>
+    </ul>
+    <button>How many items are in the list?</button>
+    <p class="result">dunno :(</p>
+
+    <script>
+        //   On the click of the button,
+        //   Count the items in the list
+        //   And display the result in the result element.
+
+        const button = document.querySelector('button');
+        const itemToChange = document.querySelector('p');
+
+        const numberOfItems = document.querySelectorAll("li");
+        let i = 0;
+        function listener() {
+            numberOfItems.forEach(element => i++);
+            itemToChange.innerHTML = `The result is ${i}.`;
+            i = 0;
+        }
+
+        button.addEventListener('click', listener);
+
+    </script>
+</body>
+
+</html>
