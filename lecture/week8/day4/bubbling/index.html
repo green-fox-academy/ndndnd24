@@ -51,75 +51,35 @@
         //      - one for navigation
         //      - one for zooming
 
-        const zooming = document.querySelectorAll('[data-action="zoom"]');
-        const navigation = document.querySelectorAll('[data-action="move"]');
         const backgroundImage = document.getElementsByClassName('img-inspector')[0];
+        const nav = document.querySelector('nav');
         let currentZoom = 200;
         let currentXPosition = 0;
         let currentYPosition = 0;
 
-        const nav = document.querySelector('nav');
-        console.log(nav);
 
-        let up = document.querySelector('[data-direction="up"]');
-        let down = document.querySelector('[data-direction="down"]');
-        let left = document.querySelector('[data-direction="left"]');
-        let right = document.querySelector('[data-direction="right"]');
-        let i = 0;
-        let j = 0;
-
-        // function whichButton() {
-        up.onclick = function () {
-            j = 0;
-            console.log(j);
-            return j;
-        }
-
-        down.onclick = function () {
-            j = 1;
-            console.log(j);
-            return j;
-        }
-
-        left.onclick = function () {
-            j = 2;
-            console.log(j);
-            return j;
-        }
-
-        right.onclick = function () {
-            j = 3;
-            console.log(j);
-            return j;
-        }
-        // }
-
-        function moveTheImage() {
-            if (j === 0) {
+        function imageManipulation(event) {
+            const whichButton = event.target.getAttribute('data-direction');
+            // console.log(whichButton);
+            if (whichButton === 'up') {
                 currentYPosition += 10;
-            } else if (j === 1) {
+            } else if (whichButton === 'down') {
                 currentYPosition -= 10;
-            } else if (j === 2) {
+            } else if (whichButton === 'left') {
                 currentXPosition += 10;
-            } else if (j === 3) {
+            } else if (whichButton === 'right') {
                 currentXPosition -= 10;
+            } else if (whichButton === 'in') {
+                currentZoom = currentZoom * 1.2;
+            } else if (whichButton === 'out') {
+                currentZoom = currentZoom * 0.8;
             }
+            backgroundImage.style.backgroundSize = `${currentZoom}%`;
             backgroundImage.style.backgroundPositionX = `${currentXPosition}px`;
             backgroundImage.style.backgroundPositionY = `${currentYPosition}px`;
         }
 
-        function zoomTheImage() {
-            if (i === 0) {
-                currentZoom = currentZoom * 1.2;
-            } else if (i === 1) {
-                currentZoom = currentZoom * 0.8;
-            }
-            backgroundImage.style.backgroundSize = `${currentZoom}%`;
-        }
-
-        zooming[i].addEventListener('click', zoomTheImage);
-        navigation[j].addEventListener('click', moveTheImage);
-
+        nav.addEventListener('click', imageManipulation);
     </script>
 </body>
 
