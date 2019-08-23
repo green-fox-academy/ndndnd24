@@ -1,10 +1,13 @@
 'use strict';
 
 const express = require('express');
-
 const PORT = 3002;
 const path = require('path')
 const mysql = require('mysql');
+const app = express();
+app.use(express.json());
+app.set('view engine', 'ejs');
+app.use(express.static('static'));
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -12,11 +15,6 @@ const connection = mysql.createConnection({
     password: 'almafa',
     database: 'bookstore',
 });
-
-const app = express();
-app.use(express.json());
-app.set('view engine', 'ejs');
-app.use(express.static('static'));
 
 connection.connect(err => {
     if (err) {
@@ -45,7 +43,7 @@ app.get('/books', (req, res) => {
             res.json(rows);
         });
     } else if (req.query.publisher) {
-        connection.query(`select book_mast.book_price, book_mast.book_name, author.aut_name, category.cate_descrip, publisher.pub_name from book_mast, author, category, publisher where book_mast.aut_id = author.aut_id and book_mast.cate_id = category.cate_id and book_mast.pub_id = publisher.pub_id and publisher.pub_name = \'${req.query.publisher}\';`, (err, rows) => {
+        connection.query(`SELECT book_mast.book_price, book_mast.book_name, author.aut_name, category.cate_descrip, publisher.pub_name from book_mast, author, category, publisher where book_mast.aut_id = author.aut_id and book_mast.cate_id = category.cate_id and book_mast.pub_id = publisher.pub_id and publisher.pub_name = \'${req.query.publisher}\';`, (err, rows) => {
             // res.json(outputDatabase(rows));
             res.json(rows);
         });
