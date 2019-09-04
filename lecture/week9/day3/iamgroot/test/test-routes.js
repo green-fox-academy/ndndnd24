@@ -120,3 +120,14 @@ test('40% shipstatus', (t) => {
             t.end();
         })
 })
+
+test('full shipstatus', (t) => {
+    request(app)
+        .get('/rocket/fill')
+        .query({ caliber: '.50', amount: '7500' })
+        .end((err, resp) => {
+            if (err) throw err;
+            t.same(resp.body, { recieved: '.50', amount: '7500', shipstatus: 'full', ready: true })
+            t.end();
+        })
+})
