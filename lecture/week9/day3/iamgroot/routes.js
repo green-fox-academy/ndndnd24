@@ -33,9 +33,9 @@ app.get('/yondu', (req, res) => {
     }
 })
 
-let ammo25 = 100;
-let ammo30 = 150;
-let ammo50 = 200;
+let ammo25 = 0;
+let ammo30 = 0;
+let ammo50 = 0;
 let sStatus = "empty";
 let readiness = false;
 
@@ -49,17 +49,42 @@ app.get('/rocket', (req, res) => {
     })
 })
 
+app.get('/rocket', (req, res) => {
+    const input = req.query.caliber;
+    res.json(input);
+})
+
 app.get('/rocket/fill', (req, res) => {
     if (req.query.caliber && req.query.amount) {
+        if (req.query.caliber === ".25") {
+            ammo25 += Number(req.query.amount);
+        } else if (req.query.caliber === ".30") {
+            ammo30 += Number(req.query.amount);
+        } else if (req.query.caliber === ".50") {
+            ammo50 += Number(req.query.amount);
+        } else {
+            res.status(400).json({ caliber: 'doesn\'t exist, please provide .25/.30/.50' });
+        }
+        sStatus = ammo25 + ammo30 + ammo50;
+        if (sStatus === 0) {
+            sStatus = "empty"
+        } else {
+            sStatus = sStatus / 12500 * 100;
+        }
+        if (sStatus >= 100) {
+            readiness = true;
+        }
+        res.json({
+            caliber25: ammo25,
+            caliber30: ammo30,
+            caliber50: ammo50,
+            shipstatus: sStatus + "%",
+            ready: readiness
+        })
 
     } else {
         res.status(400).json(errorMessage);
     }
-
-    //     ammo25 += 25;
-    // ammo30 += 30;
-    // ammo50 += 50;
-    // res.json({ fillment: 'fullfilled' })
 })
 
 module.exports = app;

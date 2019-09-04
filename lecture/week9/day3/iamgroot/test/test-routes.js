@@ -76,3 +76,5 @@ test('yondu endpoint fail with error message', (t) => {
             t.end();
         });
 });
+
+test('ship status')
