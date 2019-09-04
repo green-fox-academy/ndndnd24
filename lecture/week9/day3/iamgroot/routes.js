@@ -9,7 +9,7 @@ const errorMessage = {
 
 app.post('/groot', (req, res) => {
     const { inputMessage } = req.body;
-    if (inputMessage === "") {
+    if (inputMessage === '') {
         res.status(400).json(errorMessage);
     }
     res.json({
@@ -36,7 +36,7 @@ app.get('/yondu', (req, res) => {
 let ammo25 = 0;
 let ammo30 = 0;
 let ammo50 = 0;
-let sStatus = "empty";
+let sStatus = 'empty';
 let readiness = false;
 
 app.get('/rocket', (req, res) => {
@@ -44,7 +44,7 @@ app.get('/rocket', (req, res) => {
         caliber25: ammo25,
         caliber30: ammo30,
         caliber50: ammo50,
-        shipstatus: sStatus,
+        shipstatus: sStatus + '%',
         ready: readiness
     })
 })
@@ -56,11 +56,11 @@ app.get('/rocket', (req, res) => {
 
 app.get('/rocket/fill', (req, res) => {
     if (req.query.caliber && req.query.amount) {
-        if (req.query.caliber === ".25") {
+        if (req.query.caliber === '.25') {
             ammo25 += Number(req.query.amount);
-        } else if (req.query.caliber === ".30") {
+        } else if (req.query.caliber === '.30') {
             ammo30 += Number(req.query.amount);
-        } else if (req.query.caliber === ".50") {
+        } else if (req.query.caliber === '.50') {
             ammo50 += Number(req.query.amount);
         } else {
             res.status(400).json({ caliber: 'doesn\'t exist, please provide .25/.30/.50' });
@@ -75,10 +75,9 @@ app.get('/rocket/fill', (req, res) => {
             readiness = true;
         }
         res.json({
-            caliber25: ammo25,
-            caliber30: ammo30,
-            caliber50: ammo50,
-            shipstatus: sStatus + "%",
+            recieved: req.query.caliber,
+            amount: req.query.amount,
+            shipstatus: sStatus + '%',
             ready: readiness
         })
 
