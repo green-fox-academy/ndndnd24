@@ -3,12 +3,17 @@ const app = express();
 
 app.use(express.json());
 
+const errorMessage = {
+    error: 'I am Groot!'
+}
+
 app.post('/groot', (req, res) => {
     const { inputMessage } = req.body;
     if (inputMessage === "") {
-        res.json({
-            error: 'I am Groot!',
-        })
+        res.status(400).json(errorMessage);
+        // res.json(errorMessage);
+        // res.sendStatus(400);
+        // return errorMessage;
     }
     res.json({
         recieved: inputMessage,
