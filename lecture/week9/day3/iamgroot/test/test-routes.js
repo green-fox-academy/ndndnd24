@@ -41,3 +41,38 @@ test('groot endpoint', (t) => {
             t.end();
         });
 });
+
+test('yondu endpoint', (t) => {
+    request(app)
+        .get('/yondu')
+        .query({ distance: '100.0', time: '10.0' })
+        .set('accept', 'application/json')
+        .expect('content-type', 'application/json; charset=utf-8')
+        .end((err, resp) => {
+            if (err) throw err;
+            t.equal(resp.status, 200);
+            t.same(resp.body, { distance: '100.0', time: '10.0', speed: 10 });
+            t.end();
+        });
+});
+
+test('yondu endpoint fail with status', (t) => {
+    request(app)
+        .get('/yondu')
+        .query({ inputMessage: 'I am Ironman' })
+        .end((err, resp) => {
+            if (err) throw err;
+            t.equal(resp.status, 400);
+            t.end();
+        })
+});
+
+test('yondu endpoint fail with error message', (t) => {
+    request(app)
+        .get('/yondu')
+        .end((err, resp) => {
+            if (err) throw err;
+            t.same(resp.body, { error: 'I am Groot!' });
+            t.end();
+        });
+});
