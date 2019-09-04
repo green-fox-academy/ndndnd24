@@ -131,3 +131,14 @@ test('full shipstatus', (t) => {
             t.end();
         })
 })
+
+test('overloaded shipstatus', (t) => {
+    request(app)
+        .get('/rocket/fill')
+        .query({ caliber: '.50', amount: '500' })
+        .end((err, resp) => {
+            if (err) throw err;
+            t.same(resp.body, { recieved: '.50', amount: '500', shipstatus: 'overloaded', ready: false })
+            t.end();
+        })
+})
