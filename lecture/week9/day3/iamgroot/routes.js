@@ -44,7 +44,7 @@ app.get('/rocket', (req, res) => {
         caliber25: ammo25,
         caliber30: ammo30,
         caliber50: ammo50,
-        shipstatus: sStatus + '%',
+        shipstatus: sStatus,
         ready: readiness
     })
 })
@@ -67,17 +67,23 @@ app.get('/rocket/fill', (req, res) => {
         }
         sStatus = ammo25 + ammo30 + ammo50;
         if (sStatus === 0) {
-            sStatus = "empty"
+            sStatus = 'empty';
+        } else if (sStatus === 12500) {
+            sStatus = 'full';
+        } else if (sStatus > 12500) {
+            sStatus = 'overloaded';
         } else {
-            sStatus = sStatus / 12500 * 100;
+            sStatus = sStatus / 12500 * 100 + '%';
         }
-        if (sStatus >= 100) {
+        if (sStatus === 'full') {
             readiness = true;
+        } else {
+            readiness = false;
         }
         res.json({
             recieved: req.query.caliber,
             amount: req.query.amount,
-            shipstatus: sStatus + '%',
+            shipstatus: sStatus,
             ready: readiness
         })
 

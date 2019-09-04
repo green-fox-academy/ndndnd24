@@ -82,7 +82,7 @@ test('ship status', (t) => {
         .get('/rocket')
         .end((err, resp) => {
             if (err) throw err;
-            t.same(resp.body, { caliber25: 0, caliber30: 0, caliber50: 0, shipstatus: "empty%", ready: false })
+            t.same(resp.body, { caliber25: 0, caliber30: 0, caliber50: 0, shipstatus: "empty", ready: false })
             t.end();
         })
 })
@@ -94,6 +94,17 @@ test('fillment status', (t) => {
         .end((err, resp) => {
             if (err) throw err;
             t.same(resp.body, { recieved: '.50', amount: '5000', shipstatus: '40%', ready: false })
+            t.end();
+        })
+})
+
+test('empty shipstatus', (t) => {
+    request(app)
+        .get('/rocket/fill')
+        .query({ caliber: '.50', amount: '5000' })
+        .end((err, resp) => {
+            if (err) throw err;
+            t.same(resp.body, { recieved: '.50', amount: '0', shipstatus: 'empty', ready: false })
             t.end();
         })
 })
