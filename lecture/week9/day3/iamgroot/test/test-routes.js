@@ -77,4 +77,12 @@ test('yondu endpoint fail with error message', (t) => {
         });
 });
 
-test('ship status')
+test('ship status', (t) => {
+    request(app)
+        .get('/rocket')
+        .end((err, resp) => {
+            if (err) throw err;
+            t.same(resp.body, { caliber25: 0, caliber30: 0, caliber50: 0, shipstatus: "empty%", ready: false })
+            t.end();
+        })
+})
