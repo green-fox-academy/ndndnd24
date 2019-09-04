@@ -49,11 +49,6 @@ app.get('/rocket', (req, res) => {
     })
 })
 
-app.get('/rocket', (req, res) => {
-    const input = req.query.caliber;
-    res.json(input);
-})
-
 app.get('/rocket/fill', (req, res) => {
     if (req.query.caliber && req.query.amount) {
         if (req.query.caliber === '.25') {
@@ -90,6 +85,21 @@ app.get('/rocket/fill', (req, res) => {
     } else {
         res.status(400).json(errorMessage);
     }
+})
+
+app.get('/rocket/reset', (req, res) => {
+    ammo25 = 0;
+    ammo30 = 0;
+    ammo50 = 0;
+    sStatus = 'empty';
+    readiness = false;
+    res.json({
+        caliber25: ammo25,
+        caliber30: ammo30,
+        caliber50: ammo50,
+        shipstatus: sStatus,
+        ready: readiness
+    })
 })
 
 module.exports = app;

@@ -101,10 +101,10 @@ test('fillment status', (t) => {
 test('empty shipstatus', (t) => {
     request(app)
         .get('/rocket/fill')
-        .query({ caliber: '.50', amount: '5000' })
+        .query({ caliber: '.50', amount: '-5000' })
         .end((err, resp) => {
             if (err) throw err;
-            t.same(resp.body, { recieved: '.50', amount: '0', shipstatus: 'empty', ready: false })
+            t.same(resp.body, { recieved: '.50', amount: '-5000', shipstatus: 'empty', ready: false })
             t.end();
         })
 })
