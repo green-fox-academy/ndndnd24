@@ -24,7 +24,7 @@ body {
     grid-template-rows: repeat(12, minmax(50px, 1fr));
     position: relative;
     border-radius: 10px;
-    box-shadow: 10px 10px 10px rgba(169, 233, 229, 1), -10px 10px 10px rgba(169, 233, 229, 1);
+    box-shadow: 5px 5px 5px rgba(169, 233, 229, 1), -5px 5px 5px rgba(169, 233, 229, 1);
 }
 
 .logoNotification {
@@ -166,10 +166,6 @@ body {
 .controlPanel img {
     width: 25px;
 }
-
-/* .controlPanel span:hover {
-    color: rgba(169, 233, 229, 1);
-} */
 
 .volumeButton img {
     width: 15px;

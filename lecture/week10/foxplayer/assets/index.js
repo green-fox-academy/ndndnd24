@@ -2,6 +2,6 @@
 
 const mainCOntent = document.querySelector('main');
 
-fetch('/player')
+fetch('')
     .then(res => res.text())
     .then(content => mainContent.innerHTML = content);
