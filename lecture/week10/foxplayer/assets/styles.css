@@ -25,7 +25,7 @@ body {
     grid-template-rows: repeat(12, minmax(50px, 1fr));
     position: relative;
     border-radius: 10px;
-    box-shadow: 0px 10px 15px rgba(169, 233, 229, 1);
+    box-shadow: 10px 10px 10px rgba(169, 233, 229, 1), -10px 10px 10px rgba(169, 233, 229, 1);
 }
 
 .logoNotification {
