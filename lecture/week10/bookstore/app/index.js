@@ -19,45 +19,29 @@ app.use(express.static('./assets'))
 connection.connect(err => {
     if (err) {
         console.log(err);
-        resizeBy.sendStatus(400);
+        res.sendStatus(500);
         return;
     }
     console.log('Connection established');
 })
 
-app.get('', (req, res) => {
-    connection.query(
-        'SELECT * FROM author;', (err, rows) => {
-            if (err) {
-                console.log(err);
-                return;
-            } else {
-                res.json(rows);
-            }
-        }
-    )
+app.get('/', (req, res) => {
+    res.render('index');
 })
-
-// const li = document.createElement('li');
-
-function titlesOfTheBooks(data) {
-    for (let i = 0; i < data.length; i++) {
-        let divElement = document.createElement('div');
-        divElement.textContent = data[i].book_name;
-        bodySelect.appendChild(divElement);
-    }
-}
 
 
 app.get('/titles', (req, res) => {
     connection.query(
         'SELECT book_name FROM book_mast;', (err, rows) => {
-            // 'SELECT book_mast.book_price, book_mast.book_name, author.aut_name, category.cate_descrip, publisher.pub_name FROM book_mast, author, category, publisher WHERE book_mast.aut_id = author.aut_id AND book_mast.cate_id = category.cate_id AND book_mast.pub_id = publisher.pub_id;', (err, rows) => {
             if (err) {
                 console.log(err);
+                res.sendStatus(500);
+                return;
             } else {
-                // console.log(rows);
                 res.json(rows);
+                // console.log(rows);
+                // res.send(rows);
+                // res.render('index');
             }
         }
     )
