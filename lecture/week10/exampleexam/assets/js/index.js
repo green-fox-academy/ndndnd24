@@ -1,7 +1,8 @@
 'use strict';
 
-const mainContent = document.querySelector('main');
+console.log('im here');
+const divContent = document.querySelector('div');
 
-fetch('/')
+fetch('/message')
   .then(res => res.json())
-  .then(content => mainContent.innerHTML = content);
+  .then(content => divContent.innerHTML = content);

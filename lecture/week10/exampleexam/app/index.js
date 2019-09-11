@@ -23,6 +23,8 @@ connection.connect(err => {
   console.log('Connection established');
 })
 
+let stringToShow = '';
+
 app.get('/', (req, res) => {
   res.render('index');
 })
@@ -45,6 +47,7 @@ app.post('/api/links', express.urlencoded(), (req, res) => {
   let inputUrl = req.body.url;
   let inputAlias = req.body.alias;
   let secretCode = Math.floor(Math.random() * 9000) + 1000;
+  stringToShow = `Your URL is aliased to ${inputAlias} and your secret code is ${secretCode}.`
   connection.query(
     `INSERT INTO aliaser (url, alias, secretCode) VALUES (?,?,?);`,
     [inputUrl, inputAlias, secretCode],
@@ -54,11 +57,15 @@ app.post('/api/links', express.urlencoded(), (req, res) => {
         res.sendStatus(500);
         return;
       } else {
-        res.json('ok');
+        res.render('index');
       }
     }
   )
   // res.json({ inputUrl, inputAlias, secretCode });
+})
+
+app.get('/message', (req, res) => {
+  res.json(stringToShow);
 })
 
 module.exports = app;
