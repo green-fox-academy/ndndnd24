@@ -53,13 +53,63 @@ app.get('/forgot/show', (req, res) => {
     )
 })
 
-// app.get('/change'), (req, res) => {
-//     res.render('wrong');
-// }
+app.get('/change', (req, res) => {
+    res.render('change');
+})
 
-// app.post('/passchangefrom', (req, res) => {
-//     usernameForSave = req.body.username;
-// })
+app.post('/passchange', express.urlencoded(), (req, res) => {
+    usernameForSave = req.body.username;
+    passwordForSave = req.body.oldPassword;
+    let newPassword = req.body.password;
+    connection.query(
+        `SELECT username FROM login;`, (err, rows) => {
+            if (err) {
+                console.log(err);
+                res.sendStatus(500);
+                return;
+            } else {
+                let doesUserExist = false;
+                for (let i = 0; i < rows.length; i++) {
+                    if (rows[i].username === usernameForSave) {
+                        doesUserExist = true;
+                    }
+                }
+                if (doesUserExist === false) {
+                    res.render('wrong')
+                } else {
+                    connection.query(
+                        `SELECT password FROM login WHERE username = ?;`, usernameForSave, (err, rows) => {
+                            if (err) {
+                                console.log(err);
+                                res.sendStatus(500);
+                                return;
+                            } else {
+                                if (passwordForSave === rows[0].password) {
+                                    connection.query(
+                                        `UPDATE login SET password = ?
+                                        WHERE username = ?;`,
+                                        [newPassword, usernameForSave],
+                                        (err, rows) => {
+                                            if (err) {
+                                                console.log(err);
+                                                res.sendStatus(500);
+                                                return;
+                                            } else {
+                                                res.render('passchange');
+                                            }
+                                        }
+                                    )
+                                } else {
+                                    res.render('wrong');
+                                }
+                            }
+                        }
+                    )
+                }
+            }
+        }
+    )
+})
 
 app.post('/new', express.urlencoded(), (req, res) => {
     usernameForSave = req.body.username;
