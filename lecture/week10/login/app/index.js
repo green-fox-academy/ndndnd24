@@ -39,6 +39,10 @@ app.get('/forgotall', (req, res) => {
     res.render('forgotall');
 })
 
+app.get('/forgot', (req, res) => {
+    res.render('forgot');
+})
+
 app.get('/forgot/show', (req, res) => {
     connection.query(
         `SELECT username, password FROM login`, (err, rows) => {
@@ -55,6 +59,41 @@ app.get('/forgot/show', (req, res) => {
 
 app.get('/change', (req, res) => {
     res.render('change');
+})
+
+app.post('/giefpass', express.urlencoded(), (req, res) => {
+    usernameForSave = req.body.username;
+    connection.query(
+        `SELECT username FROM login;`, (err, rows) => {
+            if (err) {
+                console.log(err);
+                res.sendStatus(500);
+                return;
+            } else {
+                let doesUserExist = false;
+                for (let i = 0; i < rows.length; i++) {
+                    if (rows[i].username === usernameForSave) {
+                        doesUserExist = true;
+                    }
+                }
+                if (doesUserExist === false) {
+                    res.render('wrong')
+                } else {
+                    connection.query(
+                        `SELECT password FROM login WHERE username = ?;`, usernameForSave, (err, rows) => {
+                            if (err) {
+                                console.log(err);
+                                res.sendStatus(500);
+                                return;
+                            } else {
+                                res.send(rows[0].password)
+                            }
+                        }
+                    )
+                }
+            }
+        }
+    )
 })
 
 app.post('/passchange', express.urlencoded(), (req, res) => {
