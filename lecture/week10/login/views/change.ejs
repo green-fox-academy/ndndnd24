@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Change password</title>
+</head>
+
+<body>
+    <main>
+        <form action="/passchange" method="POST">
+            <h1>Account login</h1>
+            <label for="username">Username</label>
+            <input class="input-field" type="text" id="username" name="username">
+            <label for="password">Password</label>
+            <input class="input-field" type="password" id="password" name="password">
+            <a href="http://localhost:3008/forgot">Forgot password?</a>
+            <a href="http://localhost:3008/register">register</a>
+            <input class="pressMe" type="submit" value="Login">
+        </form>
+    </main>
+</body>
+
+</html>

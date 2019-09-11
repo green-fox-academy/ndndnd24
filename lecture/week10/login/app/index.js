@@ -53,6 +53,14 @@ app.get('/forgot/show', (req, res) => {
     )
 })
 
+app.get('/change'), (req, res) => {
+    res.render('change');
+}
+
+app.post('/passchange', (req, res) => {
+
+})
+
 app.post('/new', express.urlencoded(), (req, res) => {
     usernameForSave = req.body.username;
     passwordForSave = req.body.password;
