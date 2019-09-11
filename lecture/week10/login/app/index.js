@@ -53,13 +53,13 @@ app.get('/forgot/show', (req, res) => {
     )
 })
 
-app.get('/change'), (req, res) => {
-    res.render('change');
-}
+// app.get('/change'), (req, res) => {
+//     res.render('wrong');
+// }
 
-app.post('/passchange', (req, res) => {
-
-})
+// app.post('/passchangefrom', (req, res) => {
+//     usernameForSave = req.body.username;
+// })
 
 app.post('/new', express.urlencoded(), (req, res) => {
     usernameForSave = req.body.username;
@@ -103,20 +103,41 @@ app.post('/send', express.urlencoded(), (req, res) => {
     usernameForSave = req.body.username;
     passwordForSave = req.body.password;
     connection.query(
-        `SELECT password FROM login WHERE username = ?;`, usernameForSave, (err, rows) => {
+        `SELECT username FROM login;`, (err, rows) => {
             if (err) {
                 console.log(err);
                 res.sendStatus(500);
                 return;
             } else {
-                if (passwordForSave === rows[0].password) {
-                    res.render('logedin')
+                let doesUserExist = false;
+                for (let i = 0; i < rows.length; i++) {
+                    if (rows[i].username === usernameForSave) {
+                        doesUserExist = true;
+                    }
+                }
+                if (doesUserExist === false) {
+                    res.render('wrong')
                 } else {
-                    res.render('wrong');
+                    connection.query(
+                        `SELECT password FROM login WHERE username = ?;`, usernameForSave, (err, rows) => {
+                            if (err) {
+                                console.log(err);
+                                res.sendStatus(500);
+                                return;
+                            } else {
+                                if (passwordForSave === rows[0].password) {
+                                    res.render('logedin')
+                                } else {
+                                    res.render('wrong');
+                                }
+                            }
+                        }
+                    )
                 }
             }
         }
     )
+
 })
 
 module.exports = app;
