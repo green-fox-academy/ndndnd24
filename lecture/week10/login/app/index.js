@@ -35,8 +35,8 @@ app.get('/register', (req, res) => {
     res.render('register');
 })
 
-app.get('/forgot', (req, res) => {
-    res.render('forgot');
+app.get('/forgotall', (req, res) => {
+    res.render('forgotall');
 })
 
 app.get('/forgot/show', (req, res) => {
