@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./styles.css">
+    <title>URL shortener</title>
+</head>
+
+<body>
+    <main>
+        <form action="/api/links" method="POST">
+            <h1>URL aliaser</h1>
+            <label for="url">URL</label>
+            <br>
+            <input class="input-field" type="text" id="url" name="url">
+            <br>
+            <label for="alias">Alias</label>
+            <br>
+            <input class="input-field" type="text" id="alias" name="alias">
+            <br>
+            <input class="pressMe" type="submit" value="Submit">
+        </form>
+    </main>
+    <!-- <script type="text/javascript" src="js/index.js"></script> -->
+</body>
+
+</html>
