@@ -43,6 +43,20 @@ app.get('/showall', (req, res) => {
   )
 })
 
+app.get('/api/links', (req, res) => {
+  connection.query(
+    `SELECT id, url, alias, hitCount FROM aliaser;`, (err, rows) => {
+      if (err) {
+        console.log(err);
+        res.sendStatus(500);
+        return;
+      } else {
+        res.json(rows);
+      }
+    }
+  )
+})
+
 app.get('/a/:alias', (req, res) => {
   const currentAlias = req.params.alias;
   connection.query(
