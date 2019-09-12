@@ -87,6 +87,7 @@ app.post('/api/links', express.urlencoded(), (req, res) => {
 
 app.get('/message', (req, res) => {
   res.json(stringToShow);
+  stringToShow = ['', '', ''];
 })
 
 module.exports = app;
