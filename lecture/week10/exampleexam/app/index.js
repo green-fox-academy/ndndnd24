@@ -24,8 +24,6 @@ connection.connect(err => {
   console.log('Connection established');
 })
 
-let stringToShow = ['', '', ''];
-
 app.get('/', (req, res) => {
   res.render('index');
 })
@@ -36,7 +34,6 @@ app.get('/showall', (req, res) => {
       if (err) {
         console.log(err);
         res.sendStatus(500);
-        return;
       } else {
         res.json(rows);
       }
@@ -50,7 +47,6 @@ app.get('/api/links', (req, res) => {
       if (err) {
         console.log(err);
         res.sendStatus(500);
-        return;
       } else {
         res.json(rows);
       }
@@ -60,105 +56,86 @@ app.get('/api/links', (req, res) => {
 
 app.get('/a/:alias', (req, res) => {
   const currentAlias = req.params.alias;
+  if (currentAlias) {
+    res.sendStatus(400);
+  }
   connection.query(
-    `SELECT alias FROM aliaser;`, (err, rows) => {
+    `SELECT * FROM aliaser WHERE alias = ?;`, currentAlias, (err, rows) => {
       if (err) {
         console.log(err);
         res.sendStatus(500);
-        return;
       } else {
-        let isItUnique = false;
-        for (let i = 0; i < rows.length; i++) {
-          if (rows[i].alias === currentAlias) {
-            isItUnique = true;
-          }
-        }
-        if (isItUnique === false) {
-          res.sendStatus(404);
-        } else {
+        if (rows.length > 0) {
           connection.query(
-            `UPDATE aliaser SET hitCount = hitCount + 1 WHERE alias = ?;`, currentAlias, (err, rows) => {
+            `UPDATE aliaser SET hitCount = hitCount + 1 WHERE alias = ?;`, currentAlias, (err, response) => {
               if (err) {
                 console.log(err);
                 res.sendStatus(500);
-                return;
               } else {
-                connection.query(
-                  `SELECT * FROM aliaser WHERE alias = ?;`, currentAlias, (err, rows) => {
-                    if (err) {
-                      console.log(err);
-                      res.sendStatus(500);
-                      return;
-                    } else {
-                      res.json(rows);
-                    }
-                  }
-                )
+                // console.log(rows[0].url)
+                res.redirect(rows[0].url);
               }
             }
           )
+        } else {
+          res.sendStatus(404);
         }
       }
     }
   )
 })
 
-app.post('/api/links', express.urlencoded(), (req, res) => {
+app.post('/api/links', (req, res) => {
   let inputUrl = req.body.url;
   let inputAlias = req.body.alias;
   let secretCode = Math.floor(Math.random() * 9000) + 1000;
-  stringToShow = ['', '', ''];
-  connection.query(
-    `SELECT alias FROM aliaser;`, (err, rows) => {
-      if (err) {
-        console.log(err);
-        res.sendStatus(500);
-        return;
-      } else {
-        let isItUnique = true;
-        for (let i = 0; i < rows.length; i++) {
-          if (rows[i].alias === inputAlias) {
-            isItUnique = false;
+  if (inputUrl && inputAlias) {
+    connection.query(
+      `SELECT alias FROM aliaser WHERE alias = ?;`, inputAlias, (err, rows) => {
+        if (err) {
+          console.log(err);
+          res.sendStatus(500);
+        } else {
+          if (rows.length > 0) {
+            res.json('nowai');
+          } else {
+            connection.query(
+              `INSERT INTO aliaser (url, alias, secretCode) VALUES (?,?,?);`,
+              [inputUrl, inputAlias, secretCode],
+              (err, response) => {
+                if (err) {
+                  console.log(err);
+                  res.sendStatus(500);
+                } else {
+                  connection.query(
+                    `SELECT * FROM aliaser WHERE secretCode = ?;`, secretCode, (err, resp) => {
+                      res.json(resp);
+                    }
+                  )
+                }
+              }
+            )
           }
         }
-        if (isItUnique === false) {
-          stringToShow = [`Your alias is already in use!`, inputUrl, inputAlias];
-          res.render('index');
-        } else {
-          connection.query(
-            `INSERT INTO aliaser (url, alias, secretCode) VALUES (?,?,?);`,
-            [inputUrl, inputAlias, secretCode],
-            (err, rows) => {
-              if (err) {
-                console.log(err);
-                res.sendStatus(500);
-                return;
-              } else {
-                stringToShow = [`Your URL is aliased to ${inputAlias} and your secret code is ${secretCode}.`, '', ''];
-                res.render('index');
-              }
-            }
-          )
-        }
       }
-    }
-  )
+    )
+  } else {
+    es.sendStatus(400);
+  }
+
 })
 
-app.get('/message', (req, res) => {
-  res.json(stringToShow);
-  stringToShow = ['', '', ''];
-})
-
-app.delete('/api/links/:id', express.urlencoded(), (req, res) => {
+app.delete('/api/links/:id', (req, res) => {
   const currentId = req.params.id;
   const inputSecretCode = req.body.secretCode;
+  if (currentId == '' || inputSecretCode == '') {
+    res.sendStatus(404);
+  }
   connection.query(
     `SELECT id FROM aliaser;`, (err, rows) => {
       if (err) {
         console.log(err);
         res.sendStatus(500);
-        return;
       } else {
         let doesIdExist = false;
         for (let i = 0; i < rows.length; i++) {
@@ -171,22 +148,20 @@ app.delete('/api/links/:id', express.urlencoded(), (req, res) => {
           res.sendStatus(404);
         } else {
           connection.query(
-            `SELECT secretCode FROM aliaser WHERE id = ?;`, currentId, (err, rows) => {
+            `SELECT secretCode FROM aliaser WHERE id = ?;`, currentId, (err, response) => {
               if (err) {
                 console.log(err);
                 res.sendStatus(500);
-                return;
               } else {
                 if (rows[0].secretCode == inputSecretCode) {
                   connection.query(
-                    `DELETE FROM aliaser WHERE id = ?;`, currentId, (err, rows) => {
+                    `DELETE FROM aliaser WHERE id = ?;`, currentId, (err, resp) => {
                       if (err) {
                         console.log(err);
                         res.sendStatus(500);
-                        return;
                       } else {
                         // res.json('deleted')
-                        res.sendStatus(203);
+                        res.sendStatus(204);
                       }
                     }
                   )

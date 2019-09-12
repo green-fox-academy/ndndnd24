@@ -26,6 +26,9 @@ connection.connect(err => {
 
 app.get('/', (req, res) => {
     res.render('index');
+    res.json();
+    res.redirect();
+    res.sendStatus();
 })
 
 module.exports = app;
