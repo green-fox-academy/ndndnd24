@@ -43,6 +43,51 @@ app.get('/showall', (req, res) => {
   )
 })
 
+app.get('/a/:alias', (req, res) => {
+  const currentAlias = req.params.alias;
+  connection.query(
+    `SELECT alias FROM aliaser;`, (err, rows) => {
+      if (err) {
+        console.log(err);
+        res.sendStatus(500);
+        return;
+      } else {
+        let isItUnique = false;
+        for (let i = 0; i < rows.length; i++) {
+          if (rows[i].alias === currentAlias) {
+            isItUnique = true;
+          }
+        }
+        if (isItUnique === false) {
+          res.sendStatus(404);
+        } else {
+          connection.query(
+            `UPDATE aliaser SET hitCount = hitCount + 1 WHERE alias = ?;`, currentAlias, (err, rows) => {
+              if (err) {
+                console.log(err);
+                res.sendStatus(500);
+                return;
+              } else {
+                connection.query(
+                  `SELECT * FROM aliaser WHERE alias = ?;`, currentAlias, (err, rows) => {
+                    if (err) {
+                      console.log(err);
+                      res.sendStatus(500);
+                      return;
+                    } else {
+                      res.json(rows);
+                    }
+                  }
+                )
+              }
+            }
+          )
+        }
+      }
+    }
+  )
+})
+
 app.post('/api/links', express.urlencoded(), (req, res) => {
   let inputUrl = req.body.url;
   let inputAlias = req.body.alias;
