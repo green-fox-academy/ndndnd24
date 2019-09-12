@@ -13,6 +13,7 @@ const connection = mysql.createConnection({
 
 app.set('view engine', 'ejs');
 app.use(express.static('./assets'));
+app.use(express.json());
 
 connection.connect(err => {
   if (err) {
@@ -147,6 +148,59 @@ app.post('/api/links', express.urlencoded(), (req, res) => {
 app.get('/message', (req, res) => {
   res.json(stringToShow);
   stringToShow = ['', '', ''];
+})
+
+app.delete('/api/links/:id', express.urlencoded(), (req, res) => {
+  const currentId = req.params.id;
+  const inputSecretCode = req.body.secretCode;
+  connection.query(
+    `SELECT id FROM aliaser;`, (err, rows) => {
+      if (err) {
+        console.log(err);
+        res.sendStatus(500);
+        return;
+      } else {
+        let doesIdExist = false;
+        for (let i = 0; i < rows.length; i++) {
+          if (rows[i].id == currentId) {
+            doesIdExist = true;
+          }
+        }
+        if (doesIdExist === false) {
+          // res.json('not exist');
+          res.sendStatus(404);
+        } else {
+          connection.query(
+            `SELECT secretCode FROM aliaser WHERE id = ?;`, currentId, (err, rows) => {
+              if (err) {
+                console.log(err);
+                res.sendStatus(500);
+                return;
+              } else {
+                if (rows[0].secretCode == inputSecretCode) {
+                  connection.query(
+                    `DELETE FROM aliaser WHERE id = ?;`, currentId, (err, rows) => {
+                      if (err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                        return;
+                      } else {
+                        // res.json('deleted')
+                        res.sendStatus(203);
+                      }
+                    }
+                  )
+                } else {
+                  // res.json('wrong secret code')
+                  res.sendStatus(403);
+                }
+              }
+            }
+          )
+        }
+      }
+    }
+  )
 })
 
 module.exports = app;

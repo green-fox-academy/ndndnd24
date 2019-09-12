@@ -13,6 +13,7 @@ const connection = mysql.createConnection({
 
 app.set('view engine', 'ejs');
 app.use(express.static('./assets'));
+app.use(express.json());
 
 connection.connect(err => {
     if (err) {
