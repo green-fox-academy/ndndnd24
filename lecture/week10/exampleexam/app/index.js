@@ -57,32 +57,33 @@ app.get('/api/links', (req, res) => {
 app.get('/a/:alias', (req, res) => {
   const currentAlias = req.params.alias;
   if (currentAlias) {
-    res.sendStatus(400);
-  }
-  connection.query(
-    `SELECT * FROM aliaser WHERE alias = ?;`, currentAlias, (err, rows) => {
-      if (err) {
-        console.log(err);
-        res.sendStatus(500);
-      } else {
-        if (rows.length > 0) {
-          connection.query(
-            `UPDATE aliaser SET hitCount = hitCount + 1 WHERE alias = ?;`, currentAlias, (err, response) => {
-              if (err) {
-                console.log(err);
-                res.sendStatus(500);
-              } else {
-                // console.log(rows[0].url)
-                res.redirect(rows[0].url);
-              }
-            }
-          )
+    connection.query(
+      `SELECT * FROM aliaser WHERE alias = ?;`, currentAlias, (err, rows) => {
+        if (err) {
+          console.log(err);
+          res.sendStatus(500);
         } else {
-          res.sendStatus(404);
+          if (rows.length > 0) {
+            connection.query(
+              `UPDATE aliaser SET hitCount = hitCount + 1 WHERE alias = ?;`, currentAlias, (err, response) => {
+                if (err) {
+                  console.log(err);
+                  res.sendStatus(500);
+                } else {
+                  // console.log(rows[0].url)
+                  res.redirect(rows[0].url);
+                }
+              }
+            )
+          } else {
+            res.sendStatus(404);
+          }
         }
       }
-    }
-  )
+    )
+  } else {
+    res.sendStatus(400);
+  }
 })
 
 app.post('/api/links', (req, res) => {
@@ -109,7 +110,12 @@ app.post('/api/links', (req, res) => {
                 } else {
                   connection.query(
                     `SELECT * FROM aliaser WHERE secretCode = ?;`, secretCode, (err, resp) => {
-                      res.json(resp);
+                      if (err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                      } else {
+                        res.json(resp);
+                      }
                     }
                   )
                 }
@@ -120,7 +126,7 @@ app.post('/api/links', (req, res) => {
       }
     )
   } else {
-    es.sendStatus(400);
+    res.sendStatus(400);
   }
 
 })
