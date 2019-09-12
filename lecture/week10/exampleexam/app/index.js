@@ -23,7 +23,7 @@ connection.connect(err => {
   console.log('Connection established');
 })
 
-let stringToShow = '';
+let stringToShow = ['', '', ''];
 
 app.get('/', (req, res) => {
   res.render('index');
@@ -47,7 +47,7 @@ app.post('/api/links', express.urlencoded(), (req, res) => {
   let inputUrl = req.body.url;
   let inputAlias = req.body.alias;
   let secretCode = Math.floor(Math.random() * 9000) + 1000;
-  stringToShow = `Your URL is aliased to ${inputAlias} and your secret code is ${secretCode}.`
+  stringToShow = ['', '', ''];
   connection.query(
     `SELECT alias FROM aliaser;`, (err, rows) => {
       if (err) {
@@ -62,7 +62,7 @@ app.post('/api/links', express.urlencoded(), (req, res) => {
           }
         }
         if (isItUnique === false) {
-          stringToShow = `Your alias is already in use!`;
+          stringToShow = [`Your alias is already in use!`, inputUrl, inputAlias];
           res.render('index');
         } else {
           connection.query(
@@ -74,6 +74,7 @@ app.post('/api/links', express.urlencoded(), (req, res) => {
                 res.sendStatus(500);
                 return;
               } else {
+                stringToShow = [`Your URL is aliased to ${inputAlias} and your secret code is ${secretCode}.`, '', ''];
                 res.render('index');
               }
             }
