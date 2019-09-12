@@ -49,19 +49,39 @@ app.post('/api/links', express.urlencoded(), (req, res) => {
   let secretCode = Math.floor(Math.random() * 9000) + 1000;
   stringToShow = `Your URL is aliased to ${inputAlias} and your secret code is ${secretCode}.`
   connection.query(
-    `INSERT INTO aliaser (url, alias, secretCode) VALUES (?,?,?);`,
-    [inputUrl, inputAlias, secretCode],
-    (err, rows) => {
+    `SELECT alias FROM aliaser;`, (err, rows) => {
       if (err) {
         console.log(err);
         res.sendStatus(500);
         return;
       } else {
-        res.render('index');
+        let isItUnique = true;
+        for (let i = 0; i < rows.length; i++) {
+          if (rows[i].alias === inputAlias) {
+            isItUnique = false;
+          }
+        }
+        if (isItUnique === false) {
+          stringToShow = `Your alias is already in use!`;
+          res.render('index');
+        } else {
+          connection.query(
+            `INSERT INTO aliaser (url, alias, secretCode) VALUES (?,?,?);`,
+            [inputUrl, inputAlias, secretCode],
+            (err, rows) => {
+              if (err) {
+                console.log(err);
+                res.sendStatus(500);
+                return;
+              } else {
+                res.render('index');
+              }
+            }
+          )
+        }
       }
     }
   )
-  // res.json({ inputUrl, inputAlias, secretCode });
 })
 
 app.get('/message', (req, res) => {
